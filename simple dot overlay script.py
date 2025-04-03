@@ -1,17 +1,18 @@
 import tkinter as tk
 from pynput.keyboard import Key, Listener
 import threading
-import random
+import itertools
 
 tinker = tk.Tk()
 is_visible = True
-current_color = 'red'
+colors = itertools.cycle(['red', 'blue', 'green', 'white'])
+current_color = next(colors)
 
 def change_color():
     global current_color
-    current_color = random.choice(["red", "blue", "green"])
+    current_color = next(colors)
     canvas.itemconfig(dot, fill=current_color, outline=current_color)
-
+ 
 def on_press(key):
     global is_visible
 
